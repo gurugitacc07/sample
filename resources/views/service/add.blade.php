@@ -100,10 +100,10 @@
                                     <h5>Action</h5>
                                 </div>
                                 <div class="col-6" style="text-align: center;">
-                                    <input type="button" class="btn btn-success " id="addchildrow" value="+" />
+                                    <input type="button" class="btn btn-success addchildrow" data-id="11" value="+" />
                                 </div>
                             </div>
-                            <div class="action_clone">
+                            <div class="action_clone11">
                             <div class="action_fields">
                                 <div><label>Type</label>
                                     <input type="textbox" class="action_name" data-id="11" id="action_name11" name="action_name[]" placeholder="Action">
@@ -157,7 +157,7 @@
 
             cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger " data-id="'+rowCount+'" value="Delete"></td>';
 
-            cols2 += '<td colspan="3"><div class="row"><div class="col-6" style="text-align: center;"><h5>Action</h5></div><div class="col-6" style="text-align: center;"><input type="button" class="btn btn-success " id="addchildrow" value="+" /></div></div><div class="action_clone"><div class="action_fields"><div><label>Type</label><input type="textbox" class="action_name" data-id="'+rowCount+'1" id="action_name'+rowCount+'1" name="action_name[]" placeholder="Action"></div><div><label>Time</label><input type="textbox" data-id="'+rowCount+'1" class="action_timing" id="action_timing'+rowCount+'1" name="action_timing[]" placeholder="00.00"></div></div></div></td></tr>';
+            cols2 += '<td colspan="3"><div class="row"><div class="col-6" style="text-align: center;"><h5>Action</h5></div><div class="col-6" style="text-align: center;"><input type="button" class="btn btn-success addchildrow" data-id="'+rowCount+'1" value="+" /></div></div><div class="action_clone'+rowCount+'1"><div class="action_fields"><div><label>Type</label><input type="textbox" class="action_name" data-id="'+rowCount+'1" id="action_name'+rowCount+'1" name="action_name[]" placeholder="Action"></div><div><label>Time</label><input type="textbox" data-id="'+rowCount+'1" class="action_timing" id="action_timing'+rowCount+'1" name="action_timing[]" placeholder="00.00"></div></div></div></td></tr>';
 
             newRow.append(cols);
             newRow2.append(cols2);
@@ -187,14 +187,16 @@ $(document).on('change', '.task_timing', function() {
 
 
 
-$(document).on('click', '#addchildrow', function() {
-    var parentrowCount = $(".task_name").length;
-    var childCount = $('.action_name').length+1;
-    alert(childCount);
-    var newchildRow = $('<div class="action_fields"><div><label>Type</label><input type="textbox" class="action_name" data-id="'+parentrowCount+''+childCount+'" id="action_name'+parentrowCount+''+childCount+'" name="action_name[]" placeholder="Action"></div><div><label>Time</label><input type="textbox" data-id="'+parentrowCount+''+childCount+'" class="action_timing" id="action_timing'+parentrowCount+''+childCount+'" name="action_timing[]" placeholder="00.00"></div></div>');
+$(document).on('click', '.addchildrow', function() {
+    var parentrowCount = $(this).attr('data-id');
+     var pCount = $(".task_name").length;
+    // $(".addchildrow").closest("tr").eq(1);
+    var childCount = $('.action_clone'+parentrowCount+' .action_name').length+1;
+    alert(parentrowCount);
+    var newchildRow = $('<div class="action_fields"><div><label>Type</label><input type="textbox" class="action_name" data-id="'+pCount+''+childCount+'" id="action_name'+pCount+''+childCount+'" name="action_name[]" placeholder="Action"></div><div><label>Time</label><input type="textbox" data-id="'+pCount+''+childCount+'" class="action_timing" id="action_timing'+pCount+''+childCount+'" name="action_timing[]" placeholder="00.00"></div></div>');
   
     // newchildRow.append(childcols);
-    $(".action_clone").append(newchildRow);
+    $('.action_clone'+parentrowCount).append(newchildRow);
     childCount++;
 });
 
@@ -228,4 +230,4 @@ var atotal = 0;
     }
 }
 
-</script>>
+</script>
