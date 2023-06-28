@@ -145,7 +145,7 @@
         var counter = 0;
         var rowCount = $(".task_name").length+1;
         $("#addrow").on("click", function () {
-            var newRow = $("<tr>");
+            var newRow = $('<tr id="'+rowCount+'">');
             var newRow2 = $('<tr id="'+rowCount+'1">');
             var cols = "";
             var cols2 = "";
