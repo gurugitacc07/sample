@@ -146,7 +146,9 @@
         var rowCount = $(".task_name").length+1;
         $("#addrow").on("click", function () {
             var newRow = $("<tr>");
+            var newRow2 = $('<tr id="'+rowCount+'1">');
             var cols = "";
+            var cols2 = "";
             cols += '<td><input type="text" class="form-control task_name" id="task_name'+rowCount+'" data-id="'+rowCount+'" name="task_name[]" placeholder="Task Title"/></td>';
 
             cols += '<td class="col-sm-4"><div class="form-group"><select class="form-select frequency_id" aria-label="multiple select example" name="frequency_id[]" id="frequency_id'+rowCount+'" data-id="'+rowCount+'"><option selected>Open this select menu</option>@foreach($frequencies as $val)<option value="{{$val->id}}">{{$val->frequency_name}}</option>@endforeach</select></div></td>';
@@ -155,10 +157,12 @@
 
             cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger " data-id="'+rowCount+'" value="Delete"></td>';
 
-            cols += '<tr id="'+rowCount+'1"><td colspan="3"><div class="row"><div class="col-6" style="text-align: center;"><h5>Action</h5></div><div class="col-6" style="text-align: center;"><input type="button" class="btn btn-success " id="addchildrow" value="+" /></div></div><div class="action_clone"><div class="action_fields"><div><label>Type</label><input type="textbox" class="action_name" data-id="'+rowCount+'1" id="action_name'+rowCount+'1" name="action_name[]" placeholder="Action"></div><div><label>Time</label><input type="textbox" data-id="'+rowCount+'1" class="action_timing" id="action_timing'+rowCount+'1" name="action_timing[]" placeholder="00.00"></div></div></div></td>';
+            cols2 += '<td colspan="3"><div class="row"><div class="col-6" style="text-align: center;"><h5>Action</h5></div><div class="col-6" style="text-align: center;"><input type="button" class="btn btn-success " id="addchildrow" value="+" /></div></div><div class="action_clone"><div class="action_fields"><div><label>Type</label><input type="textbox" class="action_name" data-id="'+rowCount+'1" id="action_name'+rowCount+'1" name="action_name[]" placeholder="Action"></div><div><label>Time</label><input type="textbox" data-id="'+rowCount+'1" class="action_timing" id="action_timing'+rowCount+'1" name="action_timing[]" placeholder="00.00"></div></div></div></td></tr>';
 
             newRow.append(cols);
-            $("table.order-list").append(newRow);
+            newRow2.append(cols2);
+            $("table.order-list").append(newRow,newRow2);
+            // $("table.order-list").append(newRow2);
             rowCount++;
             $("#number_of_tasks").val(rowCount);
 
